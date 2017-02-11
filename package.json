@@ -1,47 +1,18 @@
 {
   "name": "rss-feeder",
-  "version": "0.0.0",
-  "description": "Basic RSS feed reader",
-  "main": "index.js",
-  "scripts": {
-    "post-install": "node ./node_modules/bower/bin/bower install",
-    "start": "node ./node_modules/gulp/bin/gulp.js",
-    "build": "node ./node_modules/gulp/bin/gulp.js build",
-    "lint": "node ./node_modules/gulp/bin/gulp.js lint"
-  },
-  "author": "Juan Ignacio Casal @nacheina",
-  "license": "MIT",
+  "version": "0.1.0",
+  "private": true,
   "devDependencies": {
-    "express": "~4.10.4",
-    "gulp": "~3.8.10",
-    "require-dir": "~0.1.0",
-    "browserify": "~6.3.3",
-    "vinyl-source-stream": "~1.0.0",
-    "gulp-handlebars": "~3.0.1",
-    "gulp-wrap": "~0.5.0",
-    "gulp-declare": "~0.3.0",
-    "gulp-concat": "~2.4.2",
-    "browserify-shim": "~3.8.0",
-    "gulp-jshint": "~1.9.0",
-    "gulp-uglify": "~1.0.1",
-    "gulp-util": "~3.0.1",
-    "gulp-processhtml": "~1.0.2",
-    "express-handlebars": "~1.1.0",
-    "gulp-connect": "~2.2.0"
+    "react-scripts": "0.9.0"
   },
-  "browser": {
-    "backbone": "./src/components/backbone/backbone.js",
-    "jquery": "./src/components/jquery/dist/jquery.min.js",
-    "underscore": "./src/components/underscore/underscore-min.js"
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "backbone": "backbone",
-    "jquery": "$",
-    "underscore": "_"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
