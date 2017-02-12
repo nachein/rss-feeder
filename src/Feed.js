@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 
 class Feed extends Component {
-  render() {
+
+  constructor (props) {
+    super(props);
+    this.onFeedClick = this.onFeedClick.bind(this);
+  }
+
+  onFeedClick () {
+    this.props.onFeedSelected(this.props.id);
+  }
+
+  render () {
 
     var divStyle = {
         backgroundImage: 'url(' + this.props.image + ')'
     };
 
     return (
-      <div className="feed media well">
+      <div className="feed media well" onClick={this.onFeedClick}>
         <div className="media-left">
           <div className="media-object feed-image" style={divStyle}>
           </div>
