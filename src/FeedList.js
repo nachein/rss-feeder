@@ -31,9 +31,13 @@ class FeedList extends Component {
     });
 
     return (
-      <div className="feed-list">
-        {[feeds]}
+      <div>
+        <h2> {this.props.channel.title} </h2>
+        <div className="feed-list">
+          {[feeds]}
+        </div>
       </div>
+
     )
   }
 }

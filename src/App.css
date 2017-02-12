@@ -1,6 +1,12 @@
-.App {
-  padding: 15px;
+
+.app-body {
+  margin-left: 15px;
 }
+
+.side-bar {
+    height: 100%;
+}
+
 .feed:hover {
   cursor: pointer;
 }

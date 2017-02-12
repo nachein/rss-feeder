@@ -3,20 +3,24 @@ import logo from './logo.svg';
 import './App.css';
 
 import AppBar from './AppBar';
+import SideBar from './SideBar';
 import FeedList from './FeedList';
 import FeedDetail from './FeedDetail';
 
 import feeds from '../feeds.json';
+import channels from '../channels.json';
 
 class App extends Component {
 
     constructor() {
       super();
       this.state = {
-        currentFeed: -1
+        currentFeed: null,
+        currentChannel: null
       };
 
       this.onFeedSelected = this.onFeedSelected.bind(this);
+      this.onChannelSelected = this.onChannelSelected.bind(this);
       this.backToList = this.backToList.bind(this);
     }
 
@@ -26,18 +30,45 @@ class App extends Component {
       });
     }
 
+    onChannelSelected(id) {
+      this.setState({
+        currentChannel: id,
+        currentFeed: null
+      });
+    }
+
     backToList() {
       this.setState({
-        currentFeed: -1
+        currentFeed: null
       })
+    }
+
+    getChannelFeeds (id) {
+
+      return feeds.filter((feed) => {
+        return feed.channel == id;
+      });
+    }
+
+    getCurrentChannel() {
+      return channels.find((channel) => {
+        return channel.id == this.state.currentChannel;
+      });
     }
 
     render() {
 
       let content;
 
-      if(this.state.currentFeed < 0) {
-        content = <FeedList feeds={feeds} onFeedSelected={this.onFeedSelected}/>;
+      if(!this.state.currentChannel) {
+        content = <div> hello world </div>;
+      }
+      else if(!this.state.currentFeed) {
+        content = <FeedList
+                    channel={this.getCurrentChannel()}
+                    feeds={this.getChannelFeeds(this.state.currentChannel)}
+                    onFeedSelected={this.onFeedSelected}
+                  />;
       }
       else {
         let feed = feeds[this.state.currentFeed];
@@ -50,7 +81,15 @@ class App extends Component {
       return (
           <div className="App">
               <AppBar />
-              {content}
+              <div className="app-body">
+                <SideBar
+                  channels={channels}
+                  onChannelChange={this.onChannelSelected}
+                />
+                <div className="col-md-11">
+                  {content}
+                </div>
+              </div>
           </div>
       );
     }
