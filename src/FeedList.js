@@ -21,7 +21,7 @@ class FeedList extends Component {
         <Feed
           title={feed.title}
           description={feed.description}
-          time={feed.time}
+          time={feed.pubDate}
           image={feed.image}
           key={index}
           id={index}

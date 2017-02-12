@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class Feed extends Component {
 
@@ -13,9 +14,11 @@ class Feed extends Component {
 
   render () {
 
-    var divStyle = {
+    let divStyle = {
         backgroundImage: 'url(' + this.props.image + ')'
     };
+
+    let date = moment(new Date(this.props.time)).fromNow();
 
     return (
       <div className="feed media well" onClick={this.onFeedClick}>
@@ -25,8 +28,7 @@ class Feed extends Component {
         </div>
         <div className="media-body">
           <h2>{this.props.title}</h2>
-          <p>{this.props.description}</p>
-          <span>{this.props.time}</span>
+          <span>{date}</span>
         </div>
       </div>
     );
