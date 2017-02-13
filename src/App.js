@@ -22,6 +22,7 @@ class App extends Component {
       this.onFeedSelected = this.onFeedSelected.bind(this);
       this.onChannelSelected = this.onChannelSelected.bind(this);
       this.backToList = this.backToList.bind(this);
+      this.navigateHome = this.navigateHome.bind(this);
     }
 
     onFeedSelected(index) {
@@ -33,13 +34,13 @@ class App extends Component {
     onChannelSelected(id) {
       this.setState({
         currentChannel: id,
-        currentFeed: null
+        currentFeed: undefined
       });
     }
 
     backToList() {
       this.setState({
-        currentFeed: null
+        currentFeed: undefined
       })
     }
 
@@ -56,14 +57,20 @@ class App extends Component {
       });
     }
 
+    navigateHome () {
+      this.setState({
+        currentChannel: undefined,
+        currentFeed: undefined
+      });
+    }
+
     render() {
 
       let content;
-
       if(!this.state.currentChannel) {
-        content = <div> hello world </div>;
+        content = <div> Welcome to Feeder. </div>;
       }
-      else if(!this.state.currentFeed) {
+      else if(!(this.state.currentFeed >= 0)) {
         content = <FeedList
                     channel={this.getCurrentChannel()}
                     feeds={this.getChannelFeeds(this.state.currentChannel)}
@@ -80,7 +87,9 @@ class App extends Component {
 
       return (
           <div className="App">
-              <AppBar />
+              <AppBar
+                onLogoClicked={this.navigateHome}
+              />
               <div className="app-body">
                 <SideBar
                   channels={channels}

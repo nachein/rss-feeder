@@ -13,9 +13,17 @@ class FeedDetail extends Component {
     this.props.onBack();
   }
 
+  componentDidMount (){
+    var links = document.links;
+    for (var i = 0; i < links.length; i++) {
+         links[i].target = "_blank";
+    }
+  }
+
   render() {
 
-    let description = (<div className="feed-description" dangerouslySetInnerHTML={{__html: this.props.feed.description}}></div>);
+    let feedText = this.props.feed.description.replace('< ![CDATA[ ', '').replace(']]>', '');
+    let description = (<div className="feed-description" dangerouslySetInnerHTML={{__html: feedText}}></div>);
     let date = moment(new Date(this.props.feed.pubDate)).fromNow();
 
     return (

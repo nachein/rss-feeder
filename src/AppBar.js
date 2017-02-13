@@ -6,7 +6,7 @@ class AppBar extends Component {
       <nav className="navbar navbar-default navbar-static-top">
           <div className="container-fluid">
               <div className="navbar-header">
-                  <a className="navbar-brand" href="#">
+                  <a className="navbar-brand" href="#" onClick={this.props.onLogoClicked}>
                        Feeder
                   </a>
               </div>

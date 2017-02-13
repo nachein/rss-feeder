@@ -28,7 +28,7 @@ class SideBar extends Component {
     return (
       <div className="side-bar well col-md-1">
         SIDE BAR
-        <ul>
+        <ul className="list-group">
           {channels}
         </ul>
       </div>

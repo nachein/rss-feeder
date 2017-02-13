@@ -13,7 +13,9 @@ class SideBarChannel extends Component {
 
   render () {
     return (
-      <li key={this.props.channel.id} onClick={this.onClicked}> {this.props.channel.title}</li>
+      <li className="list-group-item side-bar-channel" key={this.props.channel.id} onClick={this.onClicked}>
+        <img src={this.props.channel.image} alt={this.props.channel.title} />
+      </li>
     );
   }
 }

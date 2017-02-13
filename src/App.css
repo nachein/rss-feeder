@@ -17,3 +17,8 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.side-bar-channel img {
+  width: 100%;
+  cursor: pointer;
+}
