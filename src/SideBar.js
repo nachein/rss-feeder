@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import SideBarChannel from './SideBarChannel';
+import SideBarAddChannel from './SideBarAddChannel';
 
 class SideBar extends Component {
 
@@ -25,9 +26,12 @@ class SideBar extends Component {
         />
       );
     });
+
+    channels.push(<SideBarAddChannel id="add-channel" />);
+
     return (
       <div className="side-bar well col-md-1">
-        SIDE BAR
+        <span className="side-bar-title text-center">CHANNELS</span>
         <ul className="list-group">
           {channels}
         </ul>
