@@ -10,6 +10,9 @@ import FeedDetail from './FeedDetail';
 import feeds from '../feeds.json';
 import channels from '../channels.json';
 
+import Storage from './data/storage';
+import IndexedDb from './data/indexedDb';
+
 class App extends Component {
 
     constructor() {
@@ -24,12 +27,45 @@ class App extends Component {
       this.backToList = this.backToList.bind(this);
       this.navigateHome = this.navigateHome.bind(this);
 
+      this.storage = null;
+
+      let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+      if(indexedDB) {
+        this.storage = new IndexedDb();
+        this.storage.init("feeder").then(() => {
+            console.log('storage initialized correctly');
+
+            // if
+        });
+      }
+
+
     //   fetch('https://query.yahooapis.com/v1/public/yql?q=select%20title%2Clink%2Cdescription%20from%20rss%20where%20url%3D%22http%3A%2F%2Ffeeds.feedburner.com/%2Fcrunchgear%3Fformat%3Dxml%22&format=json&diagnostics=true&callback=')
     //     .then((response) => response.json())
     //     .then((json) => console.log(json.query.results.item))
     //     .catch(function(error){
     //       console.log(error);
     //     });
+
+    // var feedSource = {
+    //     id: 1,
+    //     channel_url: 'lala',
+    //     title: '',
+    //     description: '',
+    //     image: ''
+    // };
+
+
+
+
+    }
+
+    componentDidMount() {
+        // fetch channels from db
+        this.storage.list("channels")
+            .then((channels) => {
+                debugger;
+            });
     }
 
     onFeedSelected(index) {
